@@ -78,7 +78,6 @@ function main(){
         .setCPU('Intel i7-13700K')
         .setRam('16 GB Ram')
         .setStorage('512 GB + 1TB SSD M2')
-        .setStorage('512')
         .build();
 
         console.log(`%cComputadora de Flavio:`, COLORS.red);

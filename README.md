@@ -4,7 +4,14 @@ El código está escrito en TypeScript y usamos Deno para ejecutarlo, puedes usa
 
 Si usas Node, deberás configurar TypeScript, por lo que te recomiendo Deno o Bun.
 
-Yo en lo personal estoy usando Deno; Para ejecutar 
+Yo en lo personal estoy usando Deno; Para ejecutar :
+
+deno 01-builder.ts
+
+o
+
+deno --watch 01-builder.ts //Con esto, el comando quedará corriendo escuchando cambios en el archivo.
+
 
 
 
