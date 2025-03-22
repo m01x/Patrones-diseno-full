@@ -36,52 +36,152 @@ import { COLORS } from '../helpers/colors.ts';
   // Select id, name, email from users where age > 18 and country = 'Cri' order by name ASC limit 10;
  */
 
-//! Solución
+  class Query {
+    public select: string[] = ['*'];
+    public where?: string;
+    public orderBy?: {
+      field: string,
+      order: string
+    }
+    public limit?: number;
+    public table!: string;
 
-class QueryBuilder {
-  private table: string;
-  private fields: string[] = [];
-  private conditions: string[] = [];
-  private orderFields: string[] = [];
-  private limitCount?: number;
 
-  constructor(table: string) {
-    this.table = table;
-  }
-
-  select(...fields: string[]): QueryBuilder {
-    throw new Error('Method not implemented.');
-  }
-
-  where(condition: string): QueryBuilder {
-    throw new Error('Method not implemented.');
-  }
-
-  orderBy(field: string, direction: 'ASC' | 'DESC' = 'ASC'): QueryBuilder {
-    throw new Error('Method not implemented.');
-  }
-
-  limit(count: number): QueryBuilder {
-    throw new Error('Method not implemented.');
-  }
-
-  execute(): string {
-    // Select id, name, email from users where age > 18 and country = 'Cri' order by name ASC limit 10;
-    throw new Error('Method not implemented.');
-  }
+    displayTable(){
+        console.log(`selected table ${this.table}`)
+    }
 }
 
-function main() {
-  const usersQuery = new QueryBuilder('users')
-    .select('id', 'name', 'email')
-    .where('age > 18')
-    .where("country = 'Cri'") // Esto debe de hacer una condición AND
-    .orderBy('name', 'ASC')
-    .limit(10)
-    .execute();
+class QueryBuilder {
+    private query: Query;
 
-  console.log('%cConsulta:\n', COLORS.red);
-  console.log(usersQuery);
+    constructor(table: string){
+        this.query = new Query();
+    }
+
+    setSelect(select: string[]):QueryBuilder{
+        this.query.select = select;
+        return this;
+    }
+
+    setWhere(where: string):QueryBuilder{
+        this.query.where = where;
+        return this;
+    }
+
+    setOrderBy(orderBy: {}):QueryBuilder{
+      const { field, order} = orderBy;
+      this.query. = ;
+      return this;
+  }
+
+  setWhere(where: string):QueryBuilder{
+    this.query.where = where;
+    return this;
+}
+
+    execute(){
+        return this.query;
+    }
+}
+
+function main(){
+
+    const computadorMuriel: Computer = new ComputerBuilder()
+        .setCPU(' Intel I7-6700')
+        .setRam('32 GB')
+        .setStorage('512GB SSD')
+        .build();
+
+    console.log(`%cComputadora de muriel:`, COLORS.blue);
+    computadorMuriel.displayConfiguration();
+
+    const computadorMoix : Computer = new ComputerBuilder()
+        .setCPU('Intel i7-13700K')
+        .setRam('16 GB Ram')
+        .setStorage('512 GB + 1TB SSD M2')
+        .build();
+
+        console.log(`%cComputadora de Flavio:`, COLORS.red);
+    computadorMoix.displayConfiguration();
 }
 
 main();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//! Solución
+
+// class QueryBuilder {
+//   private table: string;
+//   private fields: string[] = [];
+//   private conditions: string[] = [];
+//   private orderFields: string[] = [];
+//   private limitCount?: number;
+
+//   constructor(table: string) {
+//     this.table = table;
+//   }
+
+//   select(...fields: string[]): QueryBuilder {
+//     throw new Error('Method not implemented.');
+//   }
+
+//   where(condition: string): QueryBuilder {
+//     throw new Error('Method not implemented.');
+//   }
+
+//   orderBy(field: string, direction: 'ASC' | 'DESC' = 'ASC'): QueryBuilder {
+//     throw new Error('Method not implemented.');
+//   }
+
+//   limit(count: number): QueryBuilder {
+//     throw new Error('Method not implemented.');
+//   }
+
+//   execute(): string {
+//     // Select id, name, email from users where age > 18 and country = 'Cri' order by name ASC limit 10;
+//     throw new Error('Method not implemented.');
+//   }
+// }
+
+// function main() {
+//   const usersQuery = new QueryBuilder('users')
+//     .select('id', 'name', 'email')
+//     .where('age > 18')
+//     .where("country = 'Cri'") // Esto debe de hacer una condición AND
+//     .orderBy('name', 'ASC')
+//     .limit(10)
+//     .execute();
+
+//   console.log('%cConsulta:\n', COLORS.red);
+//   console.log(usersQuery);
+// }
+
+// main();
