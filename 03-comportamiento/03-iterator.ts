@@ -43,21 +43,55 @@ class PokemonCollection {
     }
 
     //TODO
-    createIterator(){
-        console.log("Not implemented")
+    createIterator(): PokemonIterator{
+        return new PokemonIterator(this);
     }
 }
 
 
 class PokemonIterator implements Iterator<Pokemon>{
+
+  private collection: PokemonCollection;
+  private position: number = 0;
+
+  constructor (collection: PokemonCollection){
+    this.collection = collection;
+  }
+
   next(): Pokemon | null {
-    throw new Error("Method not implemented.");
+    if( this.hasNext()){
+      return this.collection.getPokemonAt(this.position++);
+    }
+    return null
   }
   hasNext(): boolean {
-    throw new Error("Method not implemented.");
+    return this.position < this.collection.getLength();
   }
   current(): Pokemon | null {
-    throw new Error("Method not implemented.");
+    return this.collection.getPokemonAt(this.position);
   }
 
 }
+
+function main(){
+
+  const pokedex = new PokemonCollection();
+
+  pokedex.addPokemon( new Pokemon( 'Pikachu','Eléctrico' ) );
+  pokedex.addPokemon( new Pokemon( 'Charmander','Fuego' ) );
+  pokedex.addPokemon( new Pokemon( 'Squirtle','Agua' ) );
+  pokedex.addPokemon( new Pokemon( 'Bulbasaur','Planta' ) );
+  pokedex.addPokemon( new Pokemon( 'Jigglypuff','Normal' ) );
+
+  const iterator = pokedex.createIterator();
+
+  while(iterator.hasNext()){
+    const pokemon = iterator.next();
+
+    if (pokemon){
+      console.log(`Pokémon: ${pokemon.name}, Tipo: ${pokemon.type}`);
+    }
+  }
+}
+
+main();
